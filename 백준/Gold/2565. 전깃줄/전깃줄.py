@@ -16,21 +16,23 @@ input = sys.stdin.readline
     둘째 줄부터 한 줄에 하나씩 전깃줄이 A전봇대와 연결되는 위치의 번호와 B전봇대와 연결되는 위치의 번호가 차례로 주어진다.
     (0 < A_p, B_p <= 500), 같은 위치에 두 개 이상의 전깃줄이 연결될 수 없다.
 '''
-N = int(input())
-pos_map = dict()
-for _ in range(N):
-    A_p, B_p = map(int, input().split())
-    pos_map[A_p] = B_p
-pos_map = dict(sorted(pos_map.items()))
-key = list(pos_map.keys())
-dp = [1] * N
-for i in range(1, len(key)):
-    for j in range(0, i):
-        if pos_map[key[j]] < pos_map[key[i]]:
-            dp[i] = max(dp[i], dp[j] + 1)
+n = int(input())
+lists = []
+dp = [1]*n
+
+for i in range(n):
+  a, b = map(int, input().split())
+  lists.append([a, b])
+
+lists.sort()
+
+for i in range(1, n):
+  for j in range(0, i):
+    if lists[j][1] < lists[i][1]:
+      dp[i] = max(dp[i], dp[j]+1)
 
 '''
 출력:
     첫째 줄에 남아있는 모든 전깃줄이 서로 교차하지 않게 하기 위해 없애야 하는 전깃줄의 최소 개수를 출력한다.
 '''
-print(N - max(dp))
+print(n - max(dp))
