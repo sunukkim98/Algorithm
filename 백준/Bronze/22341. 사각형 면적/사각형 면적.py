@@ -9,6 +9,9 @@ area = width * height
 for _ in range(c):
     x, y = map(int, input().split())
 
+    if x >= height or y >= width:
+        continue
+
     # 가로로 자를 경우
     temp_height = height-(height-x)
     temp_area = width * temp_height
