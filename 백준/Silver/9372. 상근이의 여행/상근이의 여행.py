@@ -33,7 +33,6 @@ for _ in range(t):
         else:
             graph[b] = [a]
     check = [0]*(n + 1)
-    check[1] = 0
     cnt = dfs(1, 0)
 
     # 상근이가 모든 국가를 여행하기 위해 타야 하는 비행기 종류의 최소 개수를 출력한다
